@@ -1,0 +1,84 @@
+$border: 1px solid #fff;
+
+#background {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(41, 41, 41);
+    position: relative;
+}
+
+.self-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.table {
+    width: fit-content;
+    height: fit-content;
+    border: $border;
+}
+
+.line {
+    height: 50px;
+    width: fit-content;
+    display: flex;
+
+    div:not(:last-child) {
+        border-right: $border;
+    }
+
+    &-odd {
+        & > div:nth-child(2n-1) {
+            background-color: #fff;
+        }
+
+        & > div:nth-child(2n) {
+            background-color: #3a4d89;
+        }
+    }
+
+    &-even {
+        & > div:nth-child(2n-1) {
+            background-color: #3a4d89;
+        }
+
+        & > div:nth-child(2n) {
+            background-color: #fff;
+        }
+    }
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+    place-items: center;
+    
+    font-family: cursive;
+    color: #005aff;
+    font-weight: 1000;
+}
+
+.canGo {
+    box-shadow: inset 0 0 20px 20px #00ff654a;
+}
+
+.white {
+    text-shadow: 0px 0px 2px #000, 
+                 0px 0px 2px #000, 
+                 0px 0px 2px #000;
+    color: #fff;
+}
+
+.black {
+    text-shadow: 0px 0px 1px #626262;
+    color: #000;
+}
+
+.piece {
+    width: 60%;
+    height: 60%;
+}

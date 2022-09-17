@@ -1,0 +1,26 @@
+<div id="background">
+    
+    <div class="table self-center">
+        <div 
+            *ngFor="let line of table; let i = index"
+            class="line"
+            [ngClass]="(i % 2 === 0) ? 'line-odd' : 'line-even'" 
+            >
+            <div (drop)="teste($event)"
+                *ngFor="let square of line" 
+                class="square {{ square.piece?.color }}"
+                [ngClass]="{'canGo': square.canGo}"
+                (click)="select(square)"
+            >
+
+                <img *ngIf="square.piece?.img" class="piece"
+                    [draggable]="true"
+                    (ondragstart)="teste($event)"
+                    [src]="square.piece?.img" alt=""
+                >
+            </div>
+        </div>
+    </div>
+
+    <h1 style="color: white;">Player: {{ colorTime }}</h1>
+</div>

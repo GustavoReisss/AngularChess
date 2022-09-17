@@ -1,0 +1,25 @@
+<div id="formulario-container">
+    <form [formGroup]="form" class="center">
+
+        <div class="field">
+            <label for="username">Username</label>
+            <input type="text" id="username" formControlName="username">
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+            <input
+                [class.error]="form.isInvalid('password')"
+                type="text" 
+                id="password" 
+                formControlName="password"
+            >
+        </div>
+    </form>
+
+    <div class="buttons">
+        <button (click)="logForm()">View Form</button>
+        <button (click)="form.updateInitialValue()">Set new Initial Value</button>
+        <button (click)="form.setDirtyAndTouched()">Set As Dirty and Touched</button>
+    </div>
+</div>
