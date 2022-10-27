@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
@@ -11,9 +11,18 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
+  private makeParams(params: {[key: string]: any} = {}) {
+    let httpParams = new HttpParams()
 
-  public get<T>(url: string): Observable<T> {
-    return this.handleError(this.http.get<T>(url))
+    for (let key in params) {
+      httpParams = httpParams.append(key, params[key])
+    }
+
+    return httpParams
+  }
+
+  public get<T>(url: string, params = {}): Observable<T> {
+    return this.handleError(this.http.get<T>(url, {params: this.makeParams(params)}))
   }
 
   public getById<T>(url: string, id: string | number): Observable<T> {

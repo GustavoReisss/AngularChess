@@ -2,7 +2,7 @@ import { FormGroup, FormControl} from "@angular/forms";
 
 export class Form extends FormGroup {
     private initialFormValue: Object
-
+    
     constructor(form: {[key: string]: any}) {
         
         Object.keys(form).forEach(key => {
@@ -27,6 +27,14 @@ export class Form extends FormGroup {
 
     updateInitialValue() {
         this.initialFormValue = this.value
+
+        for (let controlName in this.controls) {
+            let control = this.get(controlName)
+
+            if (control instanceof Form) {
+                control.updateInitialValue()
+            }
+        }
     }
 
     setDirtyAndTouched() {
@@ -41,5 +49,39 @@ export class Form extends FormGroup {
     isInvalid(controlName: string) {
         const control = this.get(controlName)
         return control?.dirty && control.touched && control.errors
+    }
+
+    resetValue() {
+        this.patchValue(this.initialFormValue)
+    }
+
+    viewForm() {
+        let obj: {[key: string]: any} = {}
+    
+        let formView = {
+          changed: this.changed,
+          disabled: this.disabled,
+          value: this.value,
+          controls: obj
+        }
+    
+        for (let controlName in this.controls) {
+          const control = this.get(controlName)
+          formView.controls[controlName] = {
+            "type": Object.getPrototypeOf(control),
+            "value": control?.value,
+            "dirty": control?.dirty,
+            "pristine": control?.pristine,
+            "touched": control?.touched,
+            "errors": (control?.errors) || {},
+            "disable": control!.disabled,
+          }
+        }
+    
+        return formView
+      }
+
+    get controlss() {
+        return super.controls
     }
 }

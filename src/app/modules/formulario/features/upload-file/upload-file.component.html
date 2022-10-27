@@ -1,0 +1,19 @@
+<div id="upload-container">
+    <input type="file" (change)="setFile($event)">
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let head of headers">{{ head }}</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr *ngFor="let line of lines">
+                    <td *ngFor="let column of line">{{ column }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
