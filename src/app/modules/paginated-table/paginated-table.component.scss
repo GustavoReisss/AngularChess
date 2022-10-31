@@ -1,0 +1,35 @@
+
+$table-width: 80%;
+
+.table-wrapper {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+
+    table {
+        width: $table-width;
+        vertical-align: middle;
+        text-align: center;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background-color: rgb(40, 102, 173);
+    }
+
+    th {
+        font-weight: 1000;
+        background-color: rgba(0, 0, 0, 0.24);
+    }
+
+    td, th {
+        padding: 1px;
+        border: 2px solid rgb(175, 175, 175);
+    }
+}
+
+.table-controls {
+    width: $table-width;
+    display: flex;
+    justify-content: space-between;
+}

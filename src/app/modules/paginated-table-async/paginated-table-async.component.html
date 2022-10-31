@@ -1,0 +1,38 @@
+
+
+<div class="table-wrapper">
+    <div class="table-controls">
+        <div>
+            <button (click)="changePage(-1)" [disabled]="!canChangePage(-1)">Previous</button>
+    
+            <span style="color: red"> {{ currentPage$.value }} </span>
+
+            <button (click)="changePage(1)" [disabled]="!canChangePage(1)">Next</button>
+        </div>
+    </div>
+
+    <table *ngIf="currentPageData$ | async as data; else loading">
+        <thead> 
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of data">
+                <td>
+                    {{ row.id }}
+                </td>
+
+                <td>
+                    {{ row.name }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #loading>
+        loading...
+    </ng-template>
+
+</div>

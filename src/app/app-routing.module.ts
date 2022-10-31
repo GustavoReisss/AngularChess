@@ -18,6 +18,14 @@ const routes: Routes = [
     path: 'tabela',
     loadChildren: () => import('./modules/tabela-itens/tabela-itens.module').then(m => m.TabelaItensModule)
   },
+  {
+    path: 'tabela-paginada',
+    loadChildren: () => import('./modules/paginated-table/paginated-table.module').then(m => m.PaginatedTableModule)
+  },
+  {
+    path: 'tabela-paginada-async',
+    loadChildren: () => import('./modules/paginated-table-async/paginated-table-async.module').then(m => m.PaginatedTableAsyncModule)
+  },
 ];
 
 @NgModule({
